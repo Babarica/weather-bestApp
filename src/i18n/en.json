@@ -1,0 +1,19 @@
+{
+    "Wd": "Wind",
+    "Ap": "Atmosphere pressure",
+    "Vs": "Visibility",
+    "Hm": "Humidity",
+    "Fl": "Feels like",
+    "Sl": "Sea level",
+    "Mx": "Max.",
+    "Mn": "Min.",
+    "En": "En",
+    "Cs": "City search",
+    "Ms": "m/s",
+    "AtmF": "mmHg",
+    "Menr": "m",
+    "Gm": "g/m³",
+    "Es": "Enter your city",
+    "Td": "Now"
+
+}
