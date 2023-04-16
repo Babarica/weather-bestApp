@@ -102,7 +102,7 @@ p {
   .weather-app {
     flex-direction: column;
     min-height: 100vh;
-    max-height: 152vh;
+    max-height: 169vh;
     background: #292b3f;
     justify-content: space-between;
   }
