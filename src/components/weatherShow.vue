@@ -17,7 +17,7 @@
     <weather-big-block v-show="width <= '1040'" :day="day"></weather-big-block>
     <ul v-show="width > '1040'" class="weather-blocks" v-auto-animate>
       <li
-        @click="this.$store.commit('updateActive', index)"
+        @click="makeActive(index)"
         v-for="(day, index) in showWeather"
         :key="day"
       >
@@ -39,6 +39,7 @@ const store = useStore();
 const showWeather = computed(() => store.getters.showWeather);
 const town = computed(() => store.getters.town);
 const day = computed(() => store.getters.day);
+const makeActive = (index) => store.commit("updateActive", index);
 const width = ref(0);
 function updateWidth() {
   width.value = window.innerWidth;

@@ -101,6 +101,10 @@ p {
 @media (max-width: 1440px) {
   .weather-app {
     flex-direction: column;
+    min-height: 100vh;
+    max-height: 152vh;
+    background: #292b3f;
+    justify-content: space-between;
   }
 }
 </style>
