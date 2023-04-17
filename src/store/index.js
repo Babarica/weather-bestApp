@@ -25,6 +25,7 @@ export default createStore({
     pictures: (state) => state.data.pictures,
     error: (state) => state.data.error,
     time: (state) => state.data.time,
+    loading: (state) => state.data.loading,
   },
   mutations: {
     updateCity(state, city) {

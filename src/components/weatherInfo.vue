@@ -44,6 +44,7 @@
         </div>
         <div class="error" v-else>Данный город не найден</div>
       </div>
+      <skeleton-loader v-if="!loading"></skeleton-loader>
       <weather-slide></weather-slide>
     </div>
     <weather-footer v-show="width <= '1440'"></weather-footer>
@@ -51,6 +52,7 @@
 </template>
 <script setup>
 import weatherFooter from "./weatherFooter.vue";
+import skeletonLoader from "./skeletonLoader.vue";
 import weatherSlide from "./weatherSlide.vue";
 import { useDark } from "@vueuse/core";
 import { computed, ref, onMounted, onUnmounted } from "vue";
@@ -63,6 +65,7 @@ const spe = computed(() => store.getters.spe);
 const vis = computed(() => store.getters.vis);
 const main = computed(() => store.getters.main);
 const error = computed(() => store.getters.error);
+const loading = computed(() => store.getters.loading);
 const width = ref(0);
 function updateWidth() {
   width.value = window.innerWidth;

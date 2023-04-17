@@ -107,4 +107,9 @@ p {
     justify-content: space-between;
   }
 }
+@media (max-width: 425px) {
+  .weather-app {
+    max-height: 253vh;
+  }
+}
 </style>

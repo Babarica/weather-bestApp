@@ -8,6 +8,7 @@ export function useWeather(city) {
   const error = ref(false);
   const day = ref([]);
   const time = ref([]);
+  const loading = ref(false);
   const fetching = async () => {
     try {
       const response = await axios.get(
@@ -43,6 +44,7 @@ export function useWeather(city) {
           }
         );
         pictures.value = responsePic.data.value.splice(0, 3);
+        loading.value = true;
       }
     } catch (e) {
       error.value = true;
@@ -56,5 +58,6 @@ export function useWeather(city) {
     town,
     day,
     time,
+    loading,
   };
 }
