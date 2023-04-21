@@ -8,19 +8,15 @@ export default createStore({
     weekWeather: [],
     show: true,
     town: [],
-    main: [],
     bell: 0,
-    spe: 0,
-    vis: 0,
+    miss: [],
   },
   getters: {
     showPop: (state) => state.show,
     showWeather: (state) => state.data.weatherDays,
     town: (state) => state.data.town,
     followBell: (state) => state.bell,
-    spe: (state) => state.spe,
-    vis: (state) => state.vis,
-    main: (state) => state.main,
+    miss: (state) => state.data.weatherDays[state.bell],
     day: (state) => state.data.day,
     pictures: (state) => state.data.pictures,
     error: (state) => state.data.error,
@@ -46,9 +42,7 @@ export default createStore({
     updateActive(state, bell) {
       state.bell = bell;
       try {
-        state.main = state.data.weatherDays[bell].main;
-        state.spe = state.data.weatherDays[bell].wind.speed;
-        state.vis = state.data.weatherDays[bell].visibility;
+        state.miss = state.data.weatherDays[bell];
       } catch {
         console.log("Unknow city");
       }
@@ -68,7 +62,6 @@ export default createStore({
     async takeInfo({ dispatch, commit }) {
       await dispatch("takeData");
       commit("disablePop");
-      commit("takePhotos");
       setTimeout(() => {
         commit("updateActive", 0);
       }, 800);

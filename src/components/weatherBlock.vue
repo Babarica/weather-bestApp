@@ -253,4 +253,15 @@ export default {
     height: 76vh;
   }
 }
+@media (max-height: 1000px) {
+  .text-title {
+    margin-bottom: 128px;
+  }
+  .video {
+    border-radius: 21.7px;
+  }
+  .block::after {
+    border-radius: 20px;
+  }
+}
 </style>

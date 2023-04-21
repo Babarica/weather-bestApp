@@ -29,22 +29,30 @@
             <li class="weather-item">{{ $t("Fl") }}</li>
             <li class="weather-item">{{ $t("Sl") }}</li>
           </ul>
-          <ul v-auto-animate class="weather-data__group">
-            <li class="weather-data">{{ Math.round(spe) }} {{ $t("Ms") }}</li>
+          <ul v-if="miss" v-auto-animate class="weather-data__group">
             <li class="weather-data">
-              {{ Math.round(main.grnd_level) }} {{ $t("AtmF") }}
+              {{ Math.round(miss.wind.speed) }} {{ $t("Ms") }}
             </li>
-            <li class="weather-data">{{ Math.round(vis) }} {{ $t("Menr") }}</li>
             <li class="weather-data">
-              {{ Math.round(main.humidity) }} {{ $t("Gm") }}
+              {{ Math.round(miss.main.grnd_level) }} {{ $t("AtmF") }}
             </li>
-            <li class="weather-data">{{ Math.round(main.feels_like) }}°</li>
-            <li class="weather-data">{{ Math.round(main.sea_level) }}</li>
+            <li class="weather-data">
+              {{ Math.round(miss.visibility) }} {{ $t("Menr") }}
+            </li>
+            <li class="weather-data">
+              {{ Math.round(miss.main.humidity) }} {{ $t("Gm") }}
+            </li>
+            <li class="weather-data">
+              {{ Math.round(miss.main.feels_like) }}°
+            </li>
+            <li class="weather-data">{{ Math.round(miss.main.sea_level) }}</li>
           </ul>
         </div>
         <div class="error" v-else>Данный город не найден</div>
       </div>
-      <skeleton-loader v-if="!loading"></skeleton-loader>
+      <skeleton-loader
+        v-if="!loading && !error && showWeather"
+      ></skeleton-loader>
       <weather-slide></weather-slide>
     </div>
     <weather-footer v-show="width <= '1440'"></weather-footer>
@@ -61,11 +69,9 @@ const isDark = useDark();
 const store = useStore();
 const showWeather = computed(() => store.getters.showWeather);
 const town = computed(() => store.getters.town);
-const spe = computed(() => store.getters.spe);
-const vis = computed(() => store.getters.vis);
-const main = computed(() => store.getters.main);
 const error = computed(() => store.getters.error);
 const loading = computed(() => store.getters.loading);
+const miss = computed(() => store.getters.miss);
 const width = ref(0);
 function updateWidth() {
   width.value = window.innerWidth;
@@ -156,6 +162,23 @@ onUnmounted(() => {
     font-size: 24px;
     line-height: 29px;
     margin-top: 59px;
+  }
+}
+@media (max-height: 1000px) {
+  .weather-item {
+    margin-bottom: 27px;
+  }
+  .weather-data {
+    margin-bottom: 27px;
+  }
+  .weather-title {
+    margin-top: 40px;
+  }
+  .weather-group {
+    margin-top: 40px;
+  }
+  .weather-info__data {
+    padding: 20px 82px 0px 47px;
   }
 }
 @media (max-width: 1440px) {

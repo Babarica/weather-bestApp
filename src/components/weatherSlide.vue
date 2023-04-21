@@ -124,4 +124,9 @@ export default {
     }
   }
 }
+@media (max-height: 1000px) {
+  .swiper-slide {
+    height: 275px;
+  }
+}
 </style>
